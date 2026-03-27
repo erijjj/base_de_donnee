@@ -7,7 +7,7 @@ SET COLSEP '|'
 SET LINESIZE 200
 SET PAGESIZE 30
 
--- Q1 : Département avec le budget le plus élevé
+-- Q1 : Département avec le budget le plus éleve
 SELECT dept_name
 FROM department
 WHERE budget = (SELECT MAX(budget) FROM department);
@@ -49,7 +49,7 @@ FROM (
 )
 WHERE nb_cours > 2;
 
--- Q5 : Étudiants n'ayant pas suivi de cours avant 2010
+-- Q5 : Étudiants n ayant pas suivi de cours avant 2010
 SELECT DISTINCT s.ID, s.name
 FROM student s
 WHERE s.ID NOT IN (
@@ -61,7 +61,7 @@ SELECT name
 FROM teacher
 WHERE name LIKE 'E%';
 
--- Q7 : Enseignants avec le 4ème salaire le plus élevé
+-- Q7 : Enseignants avec le 4eme salaire le plus eleve
 SELECT name, salary
 FROM teacher t1
 WHERE 3 = (
@@ -80,7 +80,7 @@ FROM (
 WHERE ROWNUM <= 3
 ORDER BY salary DESC;
 
--- Q9 : Étudiants ayant suivi un cours en automne 2009 (IN)
+-- Q9 : Etudiants ayant suivi un cours en automne 2009 (IN)
 SELECT DISTINCT name
 FROM student
 WHERE ID IN (
@@ -88,7 +88,7 @@ WHERE ID IN (
     WHERE semester = 'Fall' AND year = 2009
 );
 
--- Q10 : Étudiants ayant suivi un cours en automne 2009 (SOME/ANY)
+-- Q10 : Etudiants ayant suivi un cours en automne 2009
 SELECT DISTINCT s.name
 FROM student s
 WHERE s.ID = SOME (
@@ -96,13 +96,13 @@ WHERE s.ID = SOME (
     WHERE semester = 'Fall' AND year = 2009
 );
 
--- Q11 : Étudiants ayant suivi un cours en automne 2009 (NATURAL INNER JOIN)
+-- Q11 : Etudiants ayant suivi un cours en automne 2009 (NATURAL INNER JOIN)
 SELECT DISTINCT s.name
 FROM student s
 NATURAL INNER JOIN takes t
 WHERE t.semester = 'Fall' AND t.year = 2009;
 
--- Q12 : Étudiants ayant suivi un cours en automne 2009 (EXISTS)
+-- Q12 : Etudiants ayant suivi un cours en automne 2009 (EXISTS)
 SELECT DISTINCT s.name
 FROM student s
 WHERE EXISTS (
@@ -112,7 +112,7 @@ WHERE EXISTS (
       AND t.year = 2009
 );
 
--- Q13 : Toutes les paires d'étudiants ayant suivi au moins un cours ensemble
+-- Q13 : Toutes les paires d'etudiants ayant suivi au moins un cours ensemble
 SELECT DISTINCT s1.name AS etudiant1, s2.name AS etudiant2
 FROM takes t1
 JOIN takes t2 ON t1.course_id = t2.course_id
@@ -124,7 +124,7 @@ JOIN student s1 ON t1.ID = s1.ID
 JOIN student s2 ON t2.ID = s2.ID
 ORDER BY s1.name, s2.name;
 
--- Q14 : Pour chaque enseignant ayant assuré un cours : nb total d'étudiants
+-- Q14 : Pour chaque enseignant ayant assuré un cours : nb total d'etudiants
 SELECT t.name AS teacher_name, COUNT(*) AS nb_etudiants
 FROM teaches te
 JOIN teacher  t  ON te.ID        = t.ID
@@ -135,7 +135,7 @@ JOIN takes    tk ON te.course_id = tk.course_id
 GROUP BY t.name
 ORDER BY nb_etudiants DESC;
 
--- Q15 : Pour TOUS les enseignants : nb total d'étudiants (LEFT JOIN)
+-- Q15 : Pour tous les enseignants : nb total d'etudiants (LEFT JOIN)
 SELECT t.name AS teacher_name, COUNT(tk.ID) AS nb_etudiants
 FROM teacher t
 LEFT JOIN teaches te ON t.ID         = te.ID
@@ -146,7 +146,7 @@ LEFT JOIN takes   tk ON te.course_id = tk.course_id
 GROUP BY t.name
 ORDER BY nb_etudiants DESC;
 
--- Q16 : Pour chaque enseignant, nombre total de grades A attribués
+-- Q16 : Pour chaque enseignant, nombre total de grades A attribues
 SELECT t.name AS teacher_name, COUNT(*) AS nb_grades_A
 FROM teaches te
 JOIN teacher  t  ON te.ID        = t.ID
@@ -158,7 +158,7 @@ WHERE tk.grade = 'A'
 GROUP BY t.name
 ORDER BY nb_grades_A DESC;
 
--- Q17 : Paires enseignant-étudiant + nb de fois que l'étudiant a suivi un cours de l'enseignant
+-- Q17 : Paires enseignant-etudiant + nb de fois que l'etudiant a suivi un cours de l'enseignant
 SELECT t.name AS teacher_name, s.name AS student_name, COUNT(*) AS nb_cours
 FROM teaches te
 JOIN teacher  t  ON te.ID        = t.ID
@@ -170,7 +170,7 @@ JOIN student  s  ON tk.ID        = s.ID
 GROUP BY t.name, s.name
 ORDER BY t.name, s.name;
 
--- Q18 : Paires enseignant-étudiant où l'étudiant a suivi AU MOINS 2 cours de cet enseignant
+-- Q18 : Paires enseignant-etudiant où l'etudiant a suivi AU MOINS 2 cours de cet enseignant
 SELECT t.name AS teacher_name, s.name AS student_name, COUNT(*) AS nb_cours
 FROM teaches te
 JOIN teacher  t  ON te.ID        = t.ID
