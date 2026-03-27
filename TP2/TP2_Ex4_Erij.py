@@ -76,7 +76,7 @@ def closureF(F: "list of dependencies", R: "set") -> list:
     return result
 
 
-#  6. α determine-t-il fonctionnellement β ?
+#  6. alpha determine-t-il fonctionnellement beta ?
 def determines(F: "list of dependencies", alpha: set, beta: set) -> bool:
     """
     Retourne True si alpha -> beta peut etre deduit de F.
@@ -84,7 +84,7 @@ def determines(F: "list of dependencies", alpha: set, beta: set) -> bool:
     return beta.issubset(closure(F, alpha))
 
 
-# 7. K est-il une super-cle ? 
+# 7. K est-il une super cle ? 
 def isSuperKey(F: "list of dependencies", R: set, K: set) -> bool:
     """
     K est une super-cle si K+ = R.
@@ -92,7 +92,7 @@ def isSuperKey(F: "list of dependencies", R: set, K: set) -> bool:
     return closure(F, K) == R
 
 
-#  8. K est-il une clé candidate ?
+#  8. K est-il une cle candidate ?
 def isCandidateKey(F: "list of dependencies", R: set, K: set) -> bool:
 
     if not isSuperKey(F, R, K):
@@ -117,7 +117,7 @@ def allCandidateKeys(F: "list of dependencies", R: set) -> list:
     return keys
 
 
-# 10. Liste de toutes les super-cles
+# 10. Liste de toutes les super cles
 def allSuperKeys(F: "list of dependencies", R: set) -> list:
     """
     Retourne la liste de toutes les super-cles de R sous F.
@@ -141,7 +141,7 @@ def oneCandidateKey(F: "list of dependencies", R: set) -> set:
     return key
 
 
-# 12. R est-elle en BCNF ?
+# 12. R est-elle en bcnf ?
 def isBCNF(F: "list of dependencies", R: set) -> bool:
     """
     R est en bcnf si pour toute DF alpha -> beta non triviale,
@@ -161,7 +161,7 @@ def isBCNF(F: "list of dependencies", R: set) -> bool:
     return True
 
 
-# 13. Le schema T est-il en BCNF ?
+# 13. Le schema T est-il en bcnf ?
 def isSchemaBCNF(F: "list of dependencies", T: "list of relations") -> bool:
     """
     Retourne True si toutes les relations de T sont en bcnf.
@@ -176,7 +176,7 @@ def isSchemaBCNF(F: "list of dependencies", T: "list of relations") -> bool:
     return True
 
 
-# 14. Decomposition BCNF
+# 14. Decomposition bcnf
 def bcnfDecomposition(F: "list of dependencies", R: set) -> list:
 
     result = [R]
@@ -241,7 +241,7 @@ if __name__ == "__main__":
     print("   A -> H ?", determines(F_ex, {'A'}, {'H'}))
     print("   B -> G ?", determines(F_ex, {'B'}, {'G'}))
 
-    print("\n7. {A,G} est super-cle ?", isSuperKey(F_ex, R_ex, {'A', 'G'}))
+    print("\n7. {A,G} est super cle ?", isSuperKey(F_ex, R_ex, {'A', 'G'}))
     print("   {A} est super cle ?",    isSuperKey(F_ex, R_ex, {'A'}))
 
     print("\n8. {A,G} est cle candidate ?", isCandidateKey(F_ex, R_ex, {'A', 'G'}))
