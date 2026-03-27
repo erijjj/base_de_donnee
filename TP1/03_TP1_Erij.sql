@@ -1,5 +1,4 @@
 -- ============================================================
---  SCRIPT 3 : TP n°1 — Fonctions SQL et Requêtes
 --  À exécuter APRÈS 01_createschema.sql et 02_data.sql
 -- ============================================================
 
@@ -47,7 +46,6 @@ SELECT EXTRACT(YEAR FROM SYSDATE) AS extract_exemple FROM DUAL;
 -- ============================================================
 
 -- 4. Insertion du cours BIO-101
--- (déjà présent dans le script data, ligne ci-dessous en commentaire)
 -- INSERT INTO course VALUES ('BIO-101', 'Intro. to Biology', 'Biology', 4);
 -- COMMIT;
 
