@@ -1,5 +1,5 @@
 -- ============================================================
---  SCRIPT 1 : CRÉATION DU SCHÉMA
+-- CRÉATION DU SCHÉMA
 --  À exécuter EN PREMIER
 -- ============================================================
 
@@ -42,7 +42,7 @@ CREATE TABLE course (
     FOREIGN KEY (dept_name) REFERENCES department
 );
 
--- teacher (attention : teacher et non instructor)
+-- teacher
 CREATE TABLE teacher (
     ID         VARCHAR2(5),
     name       VARCHAR2(20),
